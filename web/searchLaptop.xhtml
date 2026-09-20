@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Search for a laptop by model. The matching laptops are shown in the same
+     column layout as the stock list, including all specialty attributes. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Search for a laptop</ui:define>
+<ui:define name="heading">Search for a laptop</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Model:"/>
+            <h:inputText value="#{productController.searchModel}" id="model"
+                required="true" requiredMessage="Please enter a model to search!"/>
+        </h:panelGrid>
+        <h:message errorStyle="color:red" for="model"/>
+        <br/>
+        <h:commandButton value="Search for a laptop" action="#{productController.doSearchLaptop}"/>
+    </h:form>
+
+    <h:panelGroup rendered="#{not empty productController.laptopResults}">
+        <h2>The found laptops</h2>
+        <h:dataTable value="#{productController.laptopResults}" var="l" border="1">
+            <h:column><f:facet name="header"><h:outputText value="Brand"/></f:facet><h:outputText value="#{l.brand}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Model"/></f:facet><h:outputText value="#{l.model}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Display Size"/></f:facet><h:outputText value="#{l.displaySize}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Weight(gram)"/></f:facet><h:outputText value="#{l.weight}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Operating System"/></f:facet><h:outputText value="#{l.operatingSystem}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Camera"/></f:facet><h:outputText value="#{l.camera}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Wi-Fi"/></f:facet><h:outputText value="#{l.wifi}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Price"/></f:facet>
+                <h:outputText value="#{l.price}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Description"/></f:facet><h:outputText value="#{l.description}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Stock Number"/></f:facet><h:outputText value="#{l.stockNumber}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Network Interface"/></f:facet><h:outputText value="#{l.networkInterface}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Hard Drive"/></f:facet><h:outputText value="#{l.hardDrive}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Ports"/></f:facet><h:outputText value="#{l.ports}"/></h:column>
+        </h:dataTable>
+        <p>Total laptops: #{productController.laptopResults.size()}</p>
+    </h:panelGroup>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listLaptops.xhtml">The Stock of Laptops</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

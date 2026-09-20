@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Create a New Laptop. Required fields show an exception message when left
+     blank (required="true" + h:message). -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Create a New Laptop</ui:define>
+<ui:define name="heading">Create a New Laptop</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel value="Brand:"/>
+            <h:inputText value="#{productController.laptop.brand}" id="brand"
+                required="true" requiredMessage="Please enter the brand!"/>
+            <h:message errorStyle="color:red" for="brand"/>
+
+            <h:outputLabel value="Model:"/>
+            <h:inputText value="#{productController.laptop.model}" id="model"
+                required="true" requiredMessage="Please enter the model!"/>
+            <h:message errorStyle="color:red" for="model"/>
+
+            <h:outputLabel value="Display Size:"/>
+            <h:inputText value="#{productController.laptop.displaySize}" id="display"
+                required="true" requiredMessage="Please enter the display size!"/>
+            <h:message errorStyle="color:red" for="display"/>
+
+            <h:outputLabel value="Weight(gram):"/>
+            <h:inputText value="#{productController.laptop.weight}" id="weight"
+                required="true" requiredMessage="Please enter the weight!"/>
+            <h:message errorStyle="color:red" for="weight"/>
+
+            <h:outputLabel value="Operating System:"/>
+            <h:inputText value="#{productController.laptop.operatingSystem}" id="os"
+                required="true" requiredMessage="Please enter the operating system!"/>
+            <h:message errorStyle="color:red" for="os"/>
+
+            <h:outputLabel value="Camera:"/>
+            <h:inputText value="#{productController.laptop.camera}" id="camera"/>
+            <h:message errorStyle="color:red" for="camera"/>
+
+            <h:outputLabel value="Wi-Fi:"/>
+            <h:inputText value="#{productController.laptop.wifi}" id="wifi"/>
+            <h:message errorStyle="color:red" for="wifi"/>
+
+            <h:outputLabel value="Price:"/>
+            <h:inputText value="#{productController.laptop.price}" id="price"
+                required="true" requiredMessage="Please enter the price!"/>
+            <h:message errorStyle="color:red" for="price"/>
+
+            <h:outputLabel value="Description:"/>
+            <h:inputTextarea value="#{productController.laptop.description}" id="description"
+                cols="20" rows="5"/>
+            <h:message errorStyle="color:red" for="description"/>
+
+            <h:outputLabel value="Stock Number:"/>
+            <h:inputText value="#{productController.laptop.stockNumber}" id="stock"
+                required="true" requiredMessage="Please enter the stock number!"/>
+            <h:message errorStyle="color:red" for="stock"/>
+
+            <h:outputLabel value="Network Interface:"/>
+            <h:inputText value="#{productController.laptop.networkInterface}" id="nic"/>
+            <h:message errorStyle="color:red" for="nic"/>
+
+            <h:outputLabel value="Hard Drive:"/>
+            <h:inputText value="#{productController.laptop.hardDrive}" id="hdd"/>
+            <h:message errorStyle="color:red" for="hdd"/>
+
+            <h:outputLabel value="Ports:"/>
+            <h:inputText value="#{productController.laptop.ports}" id="ports"/>
+            <h:message errorStyle="color:red" for="ports"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Create a laptop" action="#{productController.doCreateLaptop}"/>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listLaptops.xhtml">The Stock of Laptops</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

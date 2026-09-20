@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- The Stock of Phones. Lists every phone; the model links to its details. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">The Stock of Phones</ui:define>
+<ui:define name="heading">The Stock of Phones</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:dataTable value="#{productController.phones}" var="p" border="1">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Brand"/></f:facet>
+                <h:outputText value="#{p.brand}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Model"/></f:facet>
+                <h:commandLink value="#{p.model}" action="#{productController.doViewProduct}">
+                    <f:setPropertyActionListener target="#{productController.selectedId}" value="#{p.id}"/>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
+
+        <p>Total phones: #{productController.phones.size()}</p>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="newPhone.xhtml">Create a New Phone</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

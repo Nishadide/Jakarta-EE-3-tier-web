@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Details of a single laptop, shown when its model is clicked in the stock
+     list. Demonstrates retrieval of a Joined-Subclass entity. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Laptop Details</ui:define>
+<ui:define name="heading">Laptop: #{productController.selectedLaptop.model}</ui:define>
+<ui:define name="content">
+
+    <h:panelGrid columns="2" border="0">
+        <h:outputText value="Brand:"/>            <h:outputText value="#{productController.selectedLaptop.brand}"/>
+        <h:outputText value="Model:"/>            <h:outputText value="#{productController.selectedLaptop.model}"/>
+        <h:outputText value="Display Size:"/>     <h:outputText value="#{productController.selectedLaptop.displaySize}"/>
+        <h:outputText value="Weight(gram):"/>     <h:outputText value="#{productController.selectedLaptop.weight}"/>
+        <h:outputText value="Operating System:"/> <h:outputText value="#{productController.selectedLaptop.operatingSystem}"/>
+        <h:outputText value="Camera:"/>           <h:outputText value="#{productController.selectedLaptop.camera}"/>
+        <h:outputText value="Wi-Fi:"/>            <h:outputText value="#{productController.selectedLaptop.wifi}"/>
+        <h:outputText value="Price:"/>
+            <h:outputText value="#{productController.selectedLaptop.price}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText>
+        <h:outputText value="Description:"/>      <h:outputText value="#{productController.selectedLaptop.description}"/>
+        <h:outputText value="Stock Number:"/>     <h:outputText value="#{productController.selectedLaptop.stockNumber}"/>
+        <h:outputText value="Network Interface:"/><h:outputText value="#{productController.selectedLaptop.networkInterface}"/>
+        <h:outputText value="Hard Drive:"/>       <h:outputText value="#{productController.selectedLaptop.hardDrive}"/>
+        <h:outputText value="Ports:"/>            <h:outputText value="#{productController.selectedLaptop.ports}"/>
+    </h:panelGrid>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listLaptops.xhtml">The Stock of Laptops</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

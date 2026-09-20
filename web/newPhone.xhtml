@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Create a New Phone. Required fields show an exception message when blank. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Create a New Phone</ui:define>
+<ui:define name="heading">Create a New Phone</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel value="Brand:"/>
+            <h:inputText value="#{productController.phone.brand}" id="brand"
+                required="true" requiredMessage="Please enter the brand!"/>
+            <h:message errorStyle="color:red" for="brand"/>
+
+            <h:outputLabel value="Model:"/>
+            <h:inputText value="#{productController.phone.model}" id="model"
+                required="true" requiredMessage="Please enter the model!"/>
+            <h:message errorStyle="color:red" for="model"/>
+
+            <h:outputLabel value="Display Size:"/>
+            <h:inputText value="#{productController.phone.displaySize}" id="display"
+                required="true" requiredMessage="Please enter the display size!"/>
+            <h:message errorStyle="color:red" for="display"/>
+
+            <h:outputLabel value="Weight(gram):"/>
+            <h:inputText value="#{productController.phone.weight}" id="weight"
+                required="true" requiredMessage="Please enter the weight!"/>
+            <h:message errorStyle="color:red" for="weight"/>
+
+            <h:outputLabel value="Operating System:"/>
+            <h:inputText value="#{productController.phone.operatingSystem}" id="os"
+                required="true" requiredMessage="Please enter the operating system!"/>
+            <h:message errorStyle="color:red" for="os"/>
+
+            <h:outputLabel value="Camera:"/>
+            <h:inputText value="#{productController.phone.camera}" id="camera"/>
+            <h:message errorStyle="color:red" for="camera"/>
+
+            <h:outputLabel value="Wi-Fi:"/>
+            <h:inputText value="#{productController.phone.wifi}" id="wifi"/>
+            <h:message errorStyle="color:red" for="wifi"/>
+
+            <h:outputLabel value="Price:"/>
+            <h:inputText value="#{productController.phone.price}" id="price"
+                required="true" requiredMessage="Please enter the price!"/>
+            <h:message errorStyle="color:red" for="price"/>
+
+            <h:outputLabel value="Description:"/>
+            <h:inputTextarea value="#{productController.phone.description}" id="description"
+                cols="20" rows="5"/>
+            <h:message errorStyle="color:red" for="description"/>
+
+            <h:outputLabel value="Stock Number:"/>
+            <h:inputText value="#{productController.phone.stockNumber}" id="stock"
+                required="true" requiredMessage="Please enter the stock number!"/>
+            <h:message errorStyle="color:red" for="stock"/>
+
+            <h:outputLabel value="Cellular Connectivity:"/>
+            <h:inputText value="#{productController.phone.cellularConnectivity}" id="cellular"/>
+            <h:message errorStyle="color:red" for="cellular"/>
+
+            <h:outputLabel value="Location:"/>
+            <h:inputText value="#{productController.phone.location}" id="location"/>
+            <h:message errorStyle="color:red" for="location"/>
+
+            <h:outputLabel value="Sim Card:"/>
+            <h:inputText value="#{productController.phone.simCard}" id="sim"/>
+            <h:message errorStyle="color:red" for="sim"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Create a phone" action="#{productController.doCreatePhone}"/>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listPhones.xhtml">The Stock of Phones</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

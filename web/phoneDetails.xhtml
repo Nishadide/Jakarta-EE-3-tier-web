@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Details of a single phone, shown when its model is clicked in the stock
+     list. Demonstrates retrieval of a Joined-Subclass entity. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Phone Details</ui:define>
+<ui:define name="heading">Phone: #{productController.selectedPhone.model}</ui:define>
+<ui:define name="content">
+
+    <h:panelGrid columns="2" border="0">
+        <h:outputText value="Brand:"/>                 <h:outputText value="#{productController.selectedPhone.brand}"/>
+        <h:outputText value="Model:"/>                 <h:outputText value="#{productController.selectedPhone.model}"/>
+        <h:outputText value="Display Size:"/>          <h:outputText value="#{productController.selectedPhone.displaySize}"/>
+        <h:outputText value="Weight(gram):"/>          <h:outputText value="#{productController.selectedPhone.weight}"/>
+        <h:outputText value="Operating System:"/>      <h:outputText value="#{productController.selectedPhone.operatingSystem}"/>
+        <h:outputText value="Camera:"/>                <h:outputText value="#{productController.selectedPhone.camera}"/>
+        <h:outputText value="Wi-Fi:"/>                 <h:outputText value="#{productController.selectedPhone.wifi}"/>
+        <h:outputText value="Price:"/>
+            <h:outputText value="#{productController.selectedPhone.price}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText>
+        <h:outputText value="Description:"/>           <h:outputText value="#{productController.selectedPhone.description}"/>
+        <h:outputText value="Stock Number:"/>          <h:outputText value="#{productController.selectedPhone.stockNumber}"/>
+        <h:outputText value="Cellular Connectivity:"/> <h:outputText value="#{productController.selectedPhone.cellularConnectivity}"/>
+        <h:outputText value="Location:"/>              <h:outputText value="#{productController.selectedPhone.location}"/>
+        <h:outputText value="Sim Card:"/>              <h:outputText value="#{productController.selectedPhone.simCard}"/>
+    </h:panelGrid>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listPhones.xhtml">The Stock of Phones</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

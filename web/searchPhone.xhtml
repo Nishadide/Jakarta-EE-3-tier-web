@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Search for a phone by model. The matching phones are shown in the same
+     column layout as the stock list, including all specialty attributes. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Search for a phone</ui:define>
+<ui:define name="heading">Search for a phone</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Model:"/>
+            <h:inputText value="#{productController.searchModel}" id="model"
+                required="true" requiredMessage="Please enter a model to search!"/>
+        </h:panelGrid>
+        <h:message errorStyle="color:red" for="model"/>
+        <br/>
+        <h:commandButton value="Search for a phone" action="#{productController.doSearchPhone}"/>
+    </h:form>
+
+    <h:panelGroup rendered="#{not empty productController.phoneResults}">
+        <h2>The found phones</h2>
+        <h:dataTable value="#{productController.phoneResults}" var="p" border="1">
+            <h:column><f:facet name="header"><h:outputText value="Brand"/></f:facet><h:outputText value="#{p.brand}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Model"/></f:facet><h:outputText value="#{p.model}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Display Size"/></f:facet><h:outputText value="#{p.displaySize}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Weight(gram)"/></f:facet><h:outputText value="#{p.weight}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Operating System"/></f:facet><h:outputText value="#{p.operatingSystem}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Camera"/></f:facet><h:outputText value="#{p.camera}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Wi-Fi"/></f:facet><h:outputText value="#{p.wifi}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Price"/></f:facet>
+                <h:outputText value="#{p.price}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Description"/></f:facet><h:outputText value="#{p.description}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Stock Number"/></f:facet><h:outputText value="#{p.stockNumber}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Cellular Connectivity"/></f:facet><h:outputText value="#{p.cellularConnectivity}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Location"/></f:facet><h:outputText value="#{p.location}"/></h:column>
+            <h:column><f:facet name="header"><h:outputText value="Sim Card"/></f:facet><h:outputText value="#{p.simCard}"/></h:column>
+        </h:dataTable>
+        <p>Total phones: #{productController.phoneResults.size()}</p>
+    </h:panelGroup>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listPhones.xhtml">The Stock of Phones</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>
