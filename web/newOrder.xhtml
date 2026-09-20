@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Create a New Order: pick a customer and a device, enter a quantity. The
+     order reduces the device's stock (handled in OrderEJB). -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Create a new Order</ui:define>
+<ui:define name="heading">Create a new Order</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel value="Customer:"/>
+            <h:selectOneMenu value="#{orderController.selectedCustomerId}" id="customer"
+                required="true" requiredMessage="Please select a customer!">
+                <f:selectItems value="#{orderController.customers}" var="c"
+                    itemValue="#{c.id}" itemLabel="#{c.name}"/>
+            </h:selectOneMenu>
+            <h:message errorStyle="color:red" for="customer"/>
+
+            <h:outputLabel value="Device:"/>
+            <h:selectOneMenu value="#{orderController.selectedProductId}" id="device"
+                required="true" requiredMessage="Please select a device!">
+                <f:selectItems value="#{orderController.products}" var="p"
+                    itemValue="#{p.id}" itemLabel="#{p.brand} #{p.model} - #{p.price}"/>
+            </h:selectOneMenu>
+            <h:message errorStyle="color:red" for="device"/>
+
+            <h:outputLabel value="Quantity:"/>
+            <h:inputText value="#{orderController.quantity}" id="quantity"
+                required="true" requiredMessage="Please enter a quantity!"/>
+            <h:message errorStyle="color:red" for="quantity"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Create an order" action="#{orderController.doCreateOrder}"/>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listOrders.xhtml">Order List</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

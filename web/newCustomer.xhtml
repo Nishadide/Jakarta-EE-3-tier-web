@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Create a New Customer. Required fields show an exception message if blank. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Create a new Customer</ui:define>
+<ui:define name="heading">Create a new Customer</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel value="Name:"/>
+            <h:inputText value="#{customerController.customer.name}" id="name"
+                required="true" requiredMessage="Please enter the customer name!"/>
+            <h:message errorStyle="color:red" for="name"/>
+
+            <h:outputLabel value="Address:"/>
+            <h:inputText value="#{customerController.customer.address}" id="address"
+                required="true" requiredMessage="Please enter the address!"/>
+            <h:message errorStyle="color:red" for="address"/>
+
+            <h:outputLabel value="Phone Number:"/>
+            <h:inputText value="#{customerController.customer.phoneNumber}" id="phone"
+                required="true" requiredMessage="Please enter the phone number!"/>
+            <h:message errorStyle="color:red" for="phone"/>
+
+            <h:outputLabel value="Email Address:"/>
+            <h:inputText value="#{customerController.customer.email}" id="email"
+                required="true" requiredMessage="Please enter the email address!"/>
+            <h:message errorStyle="color:red" for="email"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Create a customer" action="#{customerController.doCreateCustomer}"/>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listCustomers.xhtml">Customer List</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

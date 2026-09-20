@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Search for a customer by name; matches are shown with a View Details link. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Search for a Customer</ui:define>
+<ui:define name="heading">Search for a Customer</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Name:"/>
+            <h:inputText value="#{customerController.searchName}" id="name"
+                required="true" requiredMessage="Please enter a name to search!"/>
+        </h:panelGrid>
+        <h:message errorStyle="color:red" for="name"/>
+        <br/>
+        <h:commandButton value="Search for a customer" action="#{customerController.doSearchCustomer}"/>
+
+        <h:panelGroup rendered="#{not empty customerController.customerResults}">
+            <h2>The Found Customer</h2>
+            <h:dataTable value="#{customerController.customerResults}" var="c" border="1">
+                <h:column><f:facet name="header"><h:outputText value="Name"/></f:facet><h:outputText value="#{c.name}"/></h:column>
+                <h:column><f:facet name="header"><h:outputText value="Address"/></f:facet><h:outputText value="#{c.address}"/></h:column>
+                <h:column><f:facet name="header"><h:outputText value="Orders"/></f:facet><h:outputText value="#{c.orders.size()}"/></h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Action"/></f:facet>
+                    <h:commandLink value="View Details" action="#{customerController.doViewDetails}">
+                        <f:setPropertyActionListener target="#{customerController.selectedId}" value="#{c.id}"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+            <p>Total customers: #{customerController.customerResults.size()}</p>
+        </h:panelGroup>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listCustomers.xhtml">Customer List</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- Search for an order by its number; the found order shows its prices. -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Search for an Order</ui:define>
+<ui:define name="heading">Search for an Order</ui:define>
+<ui:define name="content">
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Order #:"/>
+            <h:inputText value="#{orderController.searchOrderId}" id="orderid"
+                required="true" requiredMessage="Please enter an order number!"/>
+        </h:panelGrid>
+        <h:message errorStyle="color:red" for="orderid"/>
+        <br/>
+        <h:commandButton value="Search for an order" action="#{orderController.doSearchOrder}"/>
+
+        <h:panelGroup rendered="#{orderController.orderResult ne null}">
+            <h2>The Found Order</h2>
+            <table border="1">
+                <tr>
+                    <th>Order #</th><th>Customer</th><th>Device</th>
+                    <th>Created At</th><th>Unit Price</th><th>Qty</th><th>Total Price</th>
+                </tr>
+                <tr>
+                    <td><h:outputText value="#{orderController.orderResult.id}"/></td>
+                    <td><h:outputText value="#{orderController.orderResult.customer.name}"/></td>
+                    <td><h:outputText value="#{orderController.orderResult.product.brand} - #{orderController.orderResult.product.model}"/></td>
+                    <td><h:outputText value="#{orderController.orderResult.createdAt}"/></td>
+                    <td><h:outputText value="#{orderController.orderResult.unitPrice}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></td>
+                    <td><h:outputText value="#{orderController.orderResult.quantity}"/></td>
+                    <td><h:outputText value="#{orderController.orderResult.totalPrice}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></td>
+                </tr>
+            </table>
+            <p>Total orders: 1</p>
+        </h:panelGroup>
+    </h:form>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listOrders.xhtml">List of Orders</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>

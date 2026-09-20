@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- A customer's details together with all of his/her orders (with prices). -->
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Customer: #{customerController.selectedCustomer.name}</ui:define>
+<ui:define name="heading">Customer: #{customerController.selectedCustomer.name}</ui:define>
+<ui:define name="content">
+
+    <h2>Details</h2>
+    <h:panelGrid columns="2" border="0">
+        <h:outputText value="ID:"/>            <h:outputText value="#{customerController.selectedCustomer.id}"/>
+        <h:outputText value="Name:"/>          <h:outputText value="#{customerController.selectedCustomer.name}"/>
+        <h:outputText value="Phone Number:"/>  <h:outputText value="#{customerController.selectedCustomer.phoneNumber}"/>
+        <h:outputText value="Address:"/>       <h:outputText value="#{customerController.selectedCustomer.address}"/>
+        <h:outputText value="Email Address:"/> <h:outputText value="#{customerController.selectedCustomer.email}"/>
+    </h:panelGrid>
+
+    <h2>Orders (#{customerController.selectedCustomer.orders.size()})</h2>
+    <h:dataTable value="#{customerController.selectedCustomer.orders}" var="o" border="1">
+        <h:column><f:facet name="header"><h:outputText value="#"/></f:facet><h:outputText value="#{o.id}"/></h:column>
+        <h:column><f:facet name="header"><h:outputText value="Time Created"/></f:facet><h:outputText value="#{o.createdAt}"/></h:column>
+        <h:column><f:facet name="header"><h:outputText value="BrandModel"/></f:facet><h:outputText value="#{o.product.brand}#{o.product.model}"/></h:column>
+        <h:column><f:facet name="header"><h:outputText value="Unit Price"/></f:facet>
+            <h:outputText value="#{o.unitPrice}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></h:column>
+        <h:column><f:facet name="header"><h:outputText value="Qty"/></f:facet><h:outputText value="#{o.quantity}"/></h:column>
+        <h:column><f:facet name="header"><h:outputText value="Total Price"/></f:facet>
+            <h:outputText value="#{o.totalPrice}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText></h:column>
+    </h:dataTable>
+
+</ui:define>
+
+<ui:define name="footer">
+    <a href="listCustomers.xhtml">Customer List</a> |
+    <a href="listOrders.xhtml">Order List</a> |
+    <a href="default.xhtml">Main Page</a>
+</ui:define>
+
+</ui:composition>
+</html>
