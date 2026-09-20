@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="assignment2PU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/JakartaAuthDS</jta-data-source>
+    <!-- All entity classes managed by this persistence unit. -->
+    <class>authentication.Beans.Wuser</class>
+    <!-- (Wuser is the security/registration user entity, reused as-is.) -->
+    <class>store.entities.Product</class>
+    <class>store.entities.Laptop</class>
+    <class>store.entities.SmartPhone</class>
+    <class>store.entities.Customer</class>
+    <class>store.entities.Order</class>
+    <properties>
+      <!-- Create the tables if they do not exist; keep existing data across
+           redeployments (registered users and persisted products remain). -->
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="eclipselink.logging.level" value="INFO"/>
+    </properties>
+  </persistence-unit>
+</persistence>
