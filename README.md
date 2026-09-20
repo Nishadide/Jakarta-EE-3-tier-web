@@ -29,9 +29,3 @@ See [SETUP_AND_DEPLOYMENT.md](SETUP_AND_DEPLOYMENT.md) for the full instructions
 (MySQL database, GlassFish JDBC connection pool and data source, FakeSMTP, and
 building and deploying the WAR).
 
-## Team
-
-- [Team member 1, ID] (Team Leader)
-- [Team member 2, ID]
-- [Team member 3, ID]
-- [Team member 4, ID]
